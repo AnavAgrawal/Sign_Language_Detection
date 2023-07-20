@@ -62,6 +62,10 @@ while True :
 
             cv2.imshow('Resized_Window', imgWhite)
 
+            if cv2.waitKey(20) & 0xFF == ord('d') :
+                print('registered key press')
+                cv2.imwrite('testimage.jpg', imgWhite)
+
     except :
         print('Error bypassed')
         continue
@@ -69,3 +73,6 @@ while True :
     cv2.imshow('Image', image)
 
     cv2.waitKey(1)
+
+# Now the Prediction Part
+
