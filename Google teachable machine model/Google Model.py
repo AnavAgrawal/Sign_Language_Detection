@@ -5,6 +5,8 @@ import math
 from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
 import time
+from PIL import Image, ImageOps  # Install pillow instead of PIL
+
 
 capture = cv2.VideoCapture(0)
 detector = HandDetector(maxHands=1)
@@ -21,7 +23,7 @@ custom_folder = 'Custom Data'
 
 # Prediction stuff
 
-model = load_model(r"Custom Model Training\Saved Models\V5.h5")
+model = load_model(r"keras_model.h5")
 # model.summary()
 
 prediction_list = []  # To store the predictions for each frame
@@ -79,8 +81,17 @@ while True :
 
             # Preps image for model prediction
             img_model = cv2.cvtColor(imgWhite, cv2.COLOR_BGR2RGB) # This missing line took 5 years off my lifespan 
-            img_model = np.expand_dims(img_model, 0)
             # img_model = img_model/255
+
+            size = (224, 224)
+            image2 = Image.fromarray(img_model)
+            image2 = ImageOps.fit(image2, size, Image.Resampling.LANCZOS)
+            # Normalize the image
+            # Load the image into the array
+            
+            img_model = np.asarray(image2)
+            img_model = np.expand_dims(img_model, 0)
+            img_model = (img_model.astype(np.float32) / 127.5) - 1
 
             # Does the prediction
             labels = ['Paper', 'Rock', 'Scissors']
@@ -127,6 +138,9 @@ while True :
 
     cv2.imshow('Image', image)
     cv2.waitKey(1)
+
+
+
 
 
 
