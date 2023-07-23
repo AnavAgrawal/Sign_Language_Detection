@@ -80,7 +80,7 @@ while True :
             # Preps image for model prediction
             img_model = cv2.cvtColor(imgWhite, cv2.COLOR_BGR2RGB) # This missing line took 5 years off my lifespan 
             img_model = np.expand_dims(img_model, 0)
-            # img_model = img_model/255
+            img_model = img_model/255
 
             # Does the prediction
             labels = ['Paper', 'Rock', 'Scissors']

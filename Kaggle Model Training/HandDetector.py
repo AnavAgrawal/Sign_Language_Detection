@@ -21,7 +21,7 @@ custom_folder = 'Custom Data'
 
 # Prediction stuff
 
-model = load_model(r"Model Training\Models\No_MaxPool_787_897.h5")
+model = load_model(r"Kaggle Model Training\Models\No_MaxPool_787_897.h5")
 # model.summary()
 
 prediction_list = []  # To store the predictions for each frame
@@ -81,6 +81,8 @@ while True :
             imgWhite = cv2.cvtColor(imgWhite, cv2.COLOR_BGR2GRAY)
             img_model = np.expand_dims(imgWhite, -1)
             img_model = np.expand_dims(img_model, 0)
+            img_model = img_model.astype(np.float32)
+            img_model = img_model/255
 
             # Does the prediction
             preds = model.predict(img_model,verbose=0)
