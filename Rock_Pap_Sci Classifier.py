@@ -12,8 +12,8 @@ detector = HandDetector(maxHands=1)
 counter = [0,0,0]
 
 # For bigger image window
-cv2.namedWindow("Resized_Window", cv2.WINDOW_NORMAL)
-cv2.resizeWindow("Resized_Window", 400, 400)
+# cv2.namedWindow("Resized_Window", cv2.WINDOW_NORMAL)
+# cv2.resizeWindow("Resized_Window", 400, 400)
 
 IMG_SIZE = 80
 
@@ -92,7 +92,7 @@ while True :
             # cv2.putText(imgWhite, labels[int(prednum)], (30,30), cv2.FONT_HERSHEY_COMPLEX,30, color = (255,0,0), 
             #             thickness=2)
 
-            cv2.imshow('Resized_Window', imgWhite)
+            # cv2.imshow('Resized_Window', imgWhite)
 
             # Prints most common prediction every second
             elapsed_time = time.time() - start_time
